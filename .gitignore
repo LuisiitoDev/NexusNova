@@ -407,6 +407,13 @@ MigrationBackup/
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
 
+# Rider IDE (JetBrains) files
+.idea/
+*.iml
+*.iws
+*.ipr
+out/
+
 # VS Code files for those working on multiple tools
 .vscode/*
 !.vscode/settings.json
