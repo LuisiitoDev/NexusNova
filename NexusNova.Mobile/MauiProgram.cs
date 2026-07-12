@@ -1,5 +1,7 @@
 ﻿using CommunityToolkit.Maui;
 using Microsoft.Extensions.Logging;
+using NexusNova.Infraestructure.Http;
+using Refit;
 
 namespace NexusNova
 {
@@ -11,29 +13,18 @@ namespace NexusNova
             builder
                 .UseMauiApp<App>()
                 .UseMauiCommunityToolkit()
-                .ConfigureMauiHandlers(handlers =>
-                {
-#if WINDOWS
-    				Microsoft.Maui.Controls.Handlers.Items.CollectionViewHandler.Mapper.AppendToMapping("KeyboardAccessibleCollectionView", (handler, view) =>
-    				{
-    					handler.PlatformView.SingleSelectionFollowsFocus = false;
-    				});
-
-    				Microsoft.Maui.Handlers.ContentViewHandler.Mapper.AppendToMapping(nameof(Pages.Controls.CategoryChart), (handler, view) =>
-    				{
-    					if (view is Pages.Controls.CategoryChart && handler.PlatformView is Microsoft.Maui.Platform.ContentPanel contentPanel)
-    					{
-    						contentPanel.IsTabStop = true;
-    					}
-    				});
-#endif
-                })
                 .ConfigureFonts(fonts =>
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                     fonts.AddFont("SegoeUI-Semibold.ttf", "SegoeSemibold");
                     fonts.AddFont("FluentSystemIcons-Regular.ttf", FluentUI.FontFamily);
+                });
+
+            builder.Services.AddRefitClient<INovaApiClient>()
+                .ConfigureHttpClient(client =>
+                {
+                    client.BaseAddress = new Uri("https+http://novaApi");
                 });
 
 #if DEBUG
