@@ -1,5 +1,6 @@
 <Solution>
   <Project Path="NexusNova.Api/NexusNova.Api.csproj" Id="fa85a06a-2d11-4fe4-8ada-1778cd7ef881" />
+  <Project Path="NexusNova.AppHost/NexusNova.AppHost.csproj" Id="a398690b-7acd-4ed6-beee-2d4bb571a124" />
   <Project Path="NexusNova.Mobile/NexusNova.csproj" Id="f41df7c2-5319-4d61-8159-bf6004e4d0f5">
     <Deploy Solution="Debug|*" />
   </Project>
