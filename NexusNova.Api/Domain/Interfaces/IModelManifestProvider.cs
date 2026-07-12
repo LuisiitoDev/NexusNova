@@ -1,6 +1,6 @@
-using NexusNova.Api.Domain;
+using NexusNova.Api.Domain.Models;
 
-namespace NexusNova.Api.Application.Abstractions;
+namespace NexusNova.Api.Domain.Interfaces;
 
 public interface IModelManifestProvider
 {

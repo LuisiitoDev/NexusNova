@@ -1,8 +1,8 @@
 using System.Text.Json;
 using Microsoft.Extensions.Options;
-using NexusNova.Api.Application.Abstractions;
-using NexusNova.Api.Config;
-using NexusNova.Api.Domain;
+using NexusNova.Api.Domain.Interfaces;
+using NexusNova.Api.Domain.Models;
+using NexusNova.Api.Options;
 
 namespace NexusNova.Api.Infraestructure.Manifest;
 

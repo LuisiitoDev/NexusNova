@@ -1,6 +1,6 @@
-namespace NexusNova.Api.Config;
+namespace NexusNova.Api.Options;
 
-public sealed class ApiKeyOptions
+public sealed class NovaApiKeyOptions
 {
     public const string SectionName = "Security:ApiKey";
 

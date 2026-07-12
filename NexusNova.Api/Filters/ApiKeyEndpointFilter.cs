@@ -1,15 +1,16 @@
 using System.Security.Cryptography;
 using System.Text;
 using Microsoft.Extensions.Options;
+using NexusNova.Api.Options;
 
-namespace NexusNova.Api.Config;
+namespace NexusNova.Api.Filters;
 
 public sealed class ApiKeyEndpointFilter : IEndpointFilter
 {
-    private readonly ApiKeyOptions _options;
+    private readonly NovaApiKeyOptions _options;
     private readonly ILogger<ApiKeyEndpointFilter> _logger;
 
-    public ApiKeyEndpointFilter(IOptions<ApiKeyOptions> options, ILogger<ApiKeyEndpointFilter> logger)
+    public ApiKeyEndpointFilter(IOptions<NovaApiKeyOptions> options, ILogger<ApiKeyEndpointFilter> logger)
     {
         _options = options.Value;
         _logger = logger;

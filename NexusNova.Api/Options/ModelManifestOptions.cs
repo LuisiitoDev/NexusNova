@@ -1,4 +1,4 @@
-namespace NexusNova.Api.Config;
+namespace NexusNova.Api.Options;
 
 public sealed class ModelManifestOptions
 {

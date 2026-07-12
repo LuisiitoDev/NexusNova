@@ -1,4 +1,4 @@
-namespace NexusNova.Api.Domain;
+namespace NexusNova.Api.Domain.Models;
 
 public sealed record ModelManifest
 {
