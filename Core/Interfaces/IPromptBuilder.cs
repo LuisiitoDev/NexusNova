@@ -1,4 +1,4 @@
-﻿namespace NexusNova.Application.Interfaces;
+﻿namespace NexusNova.Core.Interfaces;
 
 public interface IPromptBuilder
 {

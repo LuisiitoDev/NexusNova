@@ -1,6 +1,5 @@
 ﻿using CommunityToolkit.Maui;
 using Microsoft.Extensions.Logging;
-using Syncfusion.Maui.Toolkit.Hosting;
 
 namespace NexusNova
 {
@@ -12,7 +11,6 @@ namespace NexusNova
             builder
                 .UseMauiApp<App>()
                 .UseMauiCommunityToolkit()
-                .ConfigureSyncfusionToolkit()
                 .ConfigureMauiHandlers(handlers =>
                 {
 #if WINDOWS

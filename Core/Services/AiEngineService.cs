@@ -1,7 +1,7 @@
-﻿using NexusNova.Application.Interfaces;
+﻿using NexusNova.Core.Interfaces;
 using NexusNova.Domain.Interfaces;
 
-namespace NexusNova.Application.Services;
+namespace NexusNova.Core.Services;
 
 public sealed class AiEngineService(IPromptBuilder builder) : IAiEngineService
 {
