@@ -6,10 +6,6 @@ using NexusNova.Api.Domain;
 
 namespace NexusNova.Api.Infraestructure.Manifest;
 
-/// <summary>
-/// Reads the model manifest from a JSON file on disk and caches the result,
-/// since the manifest is static for the lifetime of the process.
-/// </summary>
 public sealed class JsonFileModelManifestProvider : IModelManifestProvider
 {
     private static readonly JsonSerializerOptions SerializerOptions = new(JsonSerializerDefaults.Web);
@@ -22,7 +18,6 @@ public sealed class JsonFileModelManifestProvider : IModelManifestProvider
         IHostEnvironment environment,
         IOptions<ModelManifestOptions> options)
     {
-        // Resolve the manifest path relative to the application content root.
         _filePath = Path.Combine(environment.ContentRootPath, options.Value.FilePath);
     }
 

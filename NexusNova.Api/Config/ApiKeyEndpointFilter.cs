@@ -4,9 +4,6 @@ using Microsoft.Extensions.Options;
 
 namespace NexusNova.Api.Config;
 
-/// <summary>
-/// Endpoint filter that rejects requests without a valid API key.
-/// </summary>
 public sealed class ApiKeyEndpointFilter : IEndpointFilter
 {
     private readonly ApiKeyOptions _options;
@@ -22,7 +19,6 @@ public sealed class ApiKeyEndpointFilter : IEndpointFilter
         EndpointFilterInvocationContext context,
         EndpointFilterDelegate next)
     {
-        // Fail closed when no API key has been configured.
         if (string.IsNullOrWhiteSpace(_options.Value))
         {
             _logger.LogError("No API key is configured. Rejecting the request.");
@@ -43,7 +39,6 @@ public sealed class ApiKeyEndpointFilter : IEndpointFilter
         return await next(context);
     }
 
-    // Constant-time comparison to avoid leaking the key through timing side channels.
     private static bool AreEqual(string provided, string expected)
     {
         var providedBytes = Encoding.UTF8.GetBytes(provided);
