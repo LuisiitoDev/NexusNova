@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="NexusNova.csproj" Id="f41df7c2-5319-4d61-8159-bf6004e4d0f5">
+    <Deploy Solution="Debug|*" />
+  </Project>
+</Solution>
