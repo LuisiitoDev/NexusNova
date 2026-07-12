@@ -5,3 +5,4 @@
 /.vs
 /NexusNova.Api/bin/Debug/net10.0
 /NexusNova.Api/obj
+/NexusNova.AppHost/obj
