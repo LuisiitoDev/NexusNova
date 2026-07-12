@@ -1,7 +1,8 @@
-﻿<?xml version = "1.0" encoding = "UTF-8" ?>
+<?xml version = "1.0" encoding = "UTF-8" ?>
 <Application xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:NexusNova"
+             xmlns:converters="clr-namespace:NexusNova.UI.Converters"
              x:Class="NexusNova.App">
     <Application.Resources>
         <ResourceDictionary>
@@ -10,6 +11,10 @@
                 <ResourceDictionary Source="Resources/Styles/Styles.xaml" />
                 <ResourceDictionary Source="Resources/Styles/AppStyles.xaml" />
             </ResourceDictionary.MergedDictionaries>
+
+            <converters:BoolToColorConverter x:Key="BoolToColorConverter"/>
+            <converters:EnumToBoolConverter x:Key="EnumToBoolConverter"/>
         </ResourceDictionary>
     </Application.Resources>
 </Application>
+

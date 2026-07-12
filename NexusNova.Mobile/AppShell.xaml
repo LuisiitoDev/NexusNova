@@ -3,12 +3,64 @@
     x:Class="NexusNova.AppShell"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    Shell.FlyoutBehavior="Flyout"
-    Title="NexusNova">
+    xmlns:pages="clr-namespace:NexusNova.UI.Pages"
+    xmlns:f="clr-namespace:Fonts"
+    Shell.NavBarIsVisible="False"
+    Shell.BackgroundColor="#17171A"
+    Shell.ForegroundColor="#00C8C8"
+    Shell.TitleColor="#C3C3C3"
+    Shell.UnselectedColor="#6E6E6E">
 
-    <Shell.FlyoutFooter>
-        <Grid Padding="15">
-        </Grid>
-    </Shell.FlyoutFooter>
+    <ShellContent
+        Route="login"
+        ContentTemplate="{DataTemplate pages:LoginPage}"
+        Shell.TabBarIsVisible="False"
+        Shell.NavBarIsVisible="False"/>
+
+    <TabBar>
+
+        <Tab Title="Assistant" Route="assistant">
+            <Tab.Icon>
+                <FontImageSource
+                    Glyph="{x:Static f:FluentUI.chat_sparkle_24_regular}"
+                    FontFamily="{x:Static f:FluentUI.FontFamily}"
+                    Size="22"
+                    Color="#C3C3C3"/>
+            </Tab.Icon>
+            <ShellContent
+                Route="assistantpage"
+                ContentTemplate="{DataTemplate pages:AssistantPage}"
+                Shell.NavBarIsVisible="False"/>
+        </Tab>
+
+        <Tab Title="Agenda" Route="agenda">
+            <Tab.Icon>
+                <FontImageSource
+                    Glyph="{x:Static f:FluentUI.calendar_ltr_24_regular}"
+                    FontFamily="{x:Static f:FluentUI.FontFamily}"
+                    Size="22"
+                    Color="#C3C3C3"/>
+            </Tab.Icon>
+            <ShellContent
+                Route="agendapage"
+                ContentTemplate="{DataTemplate pages:AgendaPage}"
+                Shell.NavBarIsVisible="False"/>
+        </Tab>
+
+        <Tab Title="Logout" Route="logout">
+            <Tab.Icon>
+                <FontImageSource
+                    Glyph="{x:Static f:FluentUI.door_arrow_right_28_regular}"
+                    FontFamily="{x:Static f:FluentUI.FontFamily}"
+                    Size="22"
+                    Color="#C3C3C3"/>
+            </Tab.Icon>
+            <ShellContent
+                Route="logoutpage"
+                ContentTemplate="{DataTemplate pages:LoginPage}"
+                Shell.NavBarIsVisible="False"/>
+        </Tab>
+
+    </TabBar>
 
 </Shell>

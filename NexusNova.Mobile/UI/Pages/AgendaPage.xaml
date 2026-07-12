@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="NexusNova.UI.Pages.AgendaPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:models="clr-namespace:NexusNova.Domain.Models"
+    Shell.NavBarIsVisible="False"
+    BackgroundColor="{StaticResource DarkBackground}">
+
+    <Grid RowDefinitions="Auto,Auto,*">
+
+        <Grid Grid.Row="0"
+              ColumnDefinitions="Auto,*,Auto"
+              Padding="16,52,16,12"
+              BackgroundColor="{StaticResource DarkBackground}">
+
+            <Border Grid.Column="0" Style="{StaticResource AvatarStyle}" Margin="0,0,12,0">
+                <Label Text="L"
+                       TextColor="White"
+                       FontSize="17"
+                       FontFamily="OpenSansSemibold"
+                       HorizontalOptions="Center"
+                       VerticalOptions="Center"/>
+            </Border>
+
+            <VerticalStackLayout Grid.Column="1" Spacing="2" VerticalOptions="Center">
+                <Label Text="{Binding UserName}"
+                       Style="{StaticResource Body1Strong}"
+                       TextColor="White"/>
+                <HorizontalStackLayout Spacing="6">
+                    <BoxView WidthRequest="7" HeightRequest="7"
+                             CornerRadius="4"
+                             Color="{StaticResource SyncedGreen}"
+                             VerticalOptions="Center"/>
+                    <Label Text="Sync Live"
+                           Style="{StaticResource Caption1}"
+                           TextColor="{StaticResource SyncedGreen}"/>
+                </HorizontalStackLayout>
+            </VerticalStackLayout>
+
+            <Border Grid.Column="2"
+                    StrokeShape="RoundRectangle 10"
+                    StrokeThickness="1"
+                    Stroke="#2200C8C8"
+                    Background="#1100C8C8"
+                    Padding="8"
+                    VerticalOptions="Center">
+                <Image Source="{StaticResource IconCloud}"
+                       WidthRequest="20" HeightRequest="20"/>
+            </Border>
+        </Grid>
+
+        <Grid Grid.Row="1"
+              ColumnDefinitions="*,Auto"
+              Padding="16,8,16,8">
+
+            <HorizontalStackLayout Grid.Column="0" Spacing="8" VerticalOptions="Center">
+                <Image Source="{StaticResource IconCalendarEvent}"
+                       WidthRequest="16" HeightRequest="16"
+                       VerticalOptions="Center"/>
+                <Label Text="AGENDA CALENDAR LIST"
+                       Style="{StaticResource Caption1Strong}"
+                       TextColor="{StaticResource Gray400}"
+                       CharacterSpacing="1.2"
+                       VerticalOptions="Center"/>
+            </HorizontalStackLayout>
+
+            <HorizontalStackLayout Grid.Column="1" Spacing="6" VerticalOptions="Center">
+                <HorizontalStackLayout.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding ClearAgendaCommand}"/>
+                </HorizontalStackLayout.GestureRecognizers>
+                <Image Source="{StaticResource IconDelete2}"
+                       WidthRequest="14" HeightRequest="14"
+                       VerticalOptions="Center"/>
+                <Label Text="Clear Agenda"
+                       Style="{StaticResource Caption1}"
+                       TextColor="{StaticResource Gray400}"/>
+            </HorizontalStackLayout>
+        </Grid>
+
+        <CollectionView
+            Grid.Row="2"
+            ItemsSource="{Binding Events}">
+            <CollectionView.ItemsLayout>
+                <LinearItemsLayout Orientation="Vertical" ItemSpacing="10"/>
+            </CollectionView.ItemsLayout>
+            <CollectionView.Header>
+                <BoxView HeightRequest="4" Color="Transparent"/>
+            </CollectionView.Header>
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="models:AgendaEvent">
+                    <Grid Padding="16,0" ColumnDefinitions="4,*" ColumnSpacing="0">
+
+                        <BoxView Grid.Column="0"
+                                 Color="{StaticResource TealAccent}"
+                                 CornerRadius="2,0,0,2"
+                                 HeightRequest="70"
+                                 VerticalOptions="Center"/>
+
+                        <Border Grid.Column="1"
+                                StrokeShape="RoundRectangle 0,14,14,0"
+                                StrokeThickness="0"
+                                Background="{StaticResource DarkCard}">
+                            <Grid ColumnDefinitions="Auto,*,Auto" Padding="14,12,14,12">
+
+                                <Border Grid.Column="0"
+                                        StrokeShape="RoundRectangle 8"
+                                        StrokeThickness="0"
+                                        Background="#1A00C8C8"
+                                        Padding="8"
+                                        WidthRequest="36" HeightRequest="36"
+                                        VerticalOptions="Center"
+                                        Margin="0,0,12,0">
+                                    <Image Source="{StaticResource IconCalendarEvent}"
+                                           WidthRequest="18" HeightRequest="18"/>
+                                </Border>
+
+                                <VerticalStackLayout Grid.Column="1" Spacing="4" VerticalOptions="Center">
+                                    <Label Text="{Binding Title}"
+                                           Style="{StaticResource Body2Strong}"
+                                           TextColor="White"
+                                           LineBreakMode="WordWrap"/>
+                                    <HorizontalStackLayout Spacing="4">
+                                        <Label Text="{Binding DateLabel}"
+                                               Style="{StaticResource Caption1}"
+                                               TextColor="{StaticResource Gray400}"/>
+                                        <Image Source="{StaticResource IconCalendarEvent}"
+                                               WidthRequest="10" HeightRequest="10"
+                                               VerticalOptions="Center"
+                                               Opacity="0.4"/>
+                                        <Label Text="{Binding TimeLabel}"
+                                               Style="{StaticResource Caption1}"
+                                               TextColor="{StaticResource Gray400}"/>
+                                    </HorizontalStackLayout>
+                                </VerticalStackLayout>
+
+                                <Border Grid.Column="2"
+                                        Style="{StaticResource SyncedBadgeStyle}"
+                                        VerticalOptions="Center"
+                                        IsVisible="{Binding IsSynced}">
+                                    <HorizontalStackLayout Spacing="4">
+                                        <BoxView WidthRequest="6" HeightRequest="6"
+                                                 CornerRadius="3"
+                                                 Color="{StaticResource SyncedGreen}"
+                                                 VerticalOptions="Center"/>
+                                        <Label Text="SYNCED"
+                                               Style="{StaticResource Caption2}"
+                                               TextColor="{StaticResource SyncedGreen}"
+                                               CharacterSpacing="0.8"
+                                               FontFamily="OpenSansSemibold"/>
+                                    </HorizontalStackLayout>
+                                </Border>
+
+                            </Grid>
+                        </Border>
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+
+            <CollectionView.Footer>
+                <Border Style="{StaticResource InfoCardStyle}" Margin="16,10,16,24">
+                    <Grid ColumnDefinitions="Auto,*" ColumnSpacing="12">
+                        <Image Grid.Column="0"
+                               Source="{StaticResource IconInfo}"
+                               WidthRequest="18" HeightRequest="18"
+                               VerticalOptions="Start"
+                               Margin="0,2,0,0"/>
+                        <VerticalStackLayout Grid.Column="1" Spacing="4">
+                            <Label Text="Store-and-Forward Local Policy:"
+                                   Style="{StaticResource Caption1Strong}"
+                                   TextColor="{StaticResource InfoBlue}"/>
+                            <Label Text="Events registered while Offline are kept in a local cache queue and processed immediately when a secure connection is restored."
+                                   Style="{StaticResource Caption1}"
+                                   TextColor="{StaticResource Gray400}"
+                                   LineBreakMode="WordWrap"/>
+                        </VerticalStackLayout>
+                    </Grid>
+                </Border>
+            </CollectionView.Footer>
+        </CollectionView>
+
+    </Grid>
+</ContentPage>

@@ -1,6 +1,8 @@
-﻿using CommunityToolkit.Maui;
+using CommunityToolkit.Maui;
 using Microsoft.Extensions.Logging;
 using NexusNova.Infraestructure.Http;
+using NexusNova.UI.Pages;
+using NexusNova.UI.ViewModels;
 using Refit;
 
 namespace NexusNova
@@ -24,8 +26,17 @@ namespace NexusNova
             builder.Services.AddRefitClient<INovaApiClient>()
                 .ConfigureHttpClient(client =>
                 {
-                    client.BaseAddress = new Uri("https+http://novaApi");
+                    client.BaseAddress = new Uri("https+http:
                 });
+
+            builder.Services.AddTransient<LoginPage>();
+            builder.Services.AddTransient<AssistantPage>();
+            builder.Services.AddTransient<AgendaPage>();
+            builder.Services.AddSingleton<AppShell>();
+
+            builder.Services.AddTransient<LoginViewModel>();
+            builder.Services.AddTransient<AssistantViewModel>();
+            builder.Services.AddTransient<AgendaViewModel>();
 
 #if DEBUG
     		builder.Logging.AddDebug();

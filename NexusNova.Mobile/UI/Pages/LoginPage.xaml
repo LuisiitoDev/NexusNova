@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="NexusNova.UI.Pages.LoginPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Shell.NavBarIsVisible="False"
+    BackgroundColor="{StaticResource DarkBackground}">
+
+    <ScrollView>
+        <Grid RowDefinitions="*,Auto" Padding="24,60,24,32">
+
+            <VerticalStackLayout
+                Grid.Row="0"
+                Spacing="0"
+                VerticalOptions="Center">
+
+                <Border Style="{StaticResource LogoBadgeStyle}" Margin="0,0,0,24">
+                    <Image Source="{StaticResource IconSparkle}"
+                           WidthRequest="48" HeightRequest="48"
+                           HorizontalOptions="Center" VerticalOptions="Center"/>
+                </Border>
+
+                <Label Text="NexusNova"
+                       Style="{StaticResource LargeTitle}"
+                       TextColor="White"
+                       HorizontalOptions="Center"
+                       Margin="0,0,0,8"/>
+
+                <Label Text="Google Workspace &amp; Productivity Assistant"
+                       Style="{StaticResource Body2}"
+                       TextColor="{StaticResource Gray400}"
+                       HorizontalOptions="Center"
+                       HorizontalTextAlignment="Center"
+                       Margin="0,0,0,48"/>
+
+                <Border Style="{StaticResource LoginCardStyle}">
+                    <VerticalStackLayout Spacing="16">
+
+                        <Label Text="Secure Workspace Access"
+                               Style="{StaticResource Title3}"
+                               TextColor="White"
+                               HorizontalOptions="Center"
+                               HorizontalTextAlignment="Center"/>
+
+                        <Label Text="Authenticate securely to sync your Google Calendar."
+                               Style="{StaticResource Body2}"
+                               TextColor="{StaticResource Gray400}"
+                               HorizontalOptions="Center"
+                               HorizontalTextAlignment="Center"
+                               Margin="0,0,0,8"/>
+
+                        <Border Style="{StaticResource PrimaryButtonStyle}">
+                            <Border.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding SignInWithGoogleCommand}"/>
+                            </Border.GestureRecognizers>
+                            <HorizontalStackLayout HorizontalOptions="Center" Spacing="12">
+                                <Label Text="G"
+                                       FontFamily="OpenSansSemibold"
+                                       FontSize="20"
+                                       TextColor="#4285F4"
+                                       VerticalOptions="Center"/>
+                                <Label Text="Sign in with Google"
+                                       Style="{StaticResource Body1Strong}"
+                                       TextColor="#1A1A2E"
+                                       VerticalOptions="Center"/>
+                            </HorizontalStackLayout>
+                        </Border>
+
+                        <Border Style="{StaticResource SecondaryButtonStyle}">
+                            <Border.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding SimulateSignInCommand}"/>
+                            </Border.GestureRecognizers>
+                            <HorizontalStackLayout HorizontalOptions="Center" Spacing="12">
+                                <Image Source="{StaticResource IconPerson}"
+                                       WidthRequest="20" HeightRequest="20"
+                                       VerticalOptions="Center"/>
+                                <Label Text="Simulate Google Sign-In"
+                                       Style="{StaticResource Body1Strong}"
+                                       TextColor="White"
+                                       VerticalOptions="Center"/>
+                            </HorizontalStackLayout>
+                        </Border>
+
+                        <HorizontalStackLayout HorizontalOptions="Center" Spacing="8" Margin="0,8,0,0">
+                            <Label Text="GOOGLE CREDENTIALS STATUS"
+                                   Style="{StaticResource Caption2}"
+                                   TextColor="{StaticResource Gray500}"
+                                   VerticalOptions="Center"
+                                   CharacterSpacing="1.5"/>
+                            <BoxView
+                                WidthRequest="8" HeightRequest="8"
+                                CornerRadius="4"
+                                VerticalOptions="Center"
+                                Color="{Binding IsCredentialConnected, Converter={StaticResource BoolToColorConverter}}"/>
+                        </HorizontalStackLayout>
+
+                    </VerticalStackLayout>
+                </Border>
+
+                <ActivityIndicator
+                    IsRunning="{Binding IsBusy}"
+                    IsVisible="{Binding IsBusy}"
+                    Color="{StaticResource TealAccent}"
+                    Margin="0,16,0,0"
+                    HorizontalOptions="Center"/>
+
+            </VerticalStackLayout>
+
+            <Label
+                Grid.Row="1"
+                Text="DESIGNED FOR .NET MAUI WEBVIEW HYBRID PLATFORM"
+                Style="{StaticResource Caption2}"
+                TextColor="{StaticResource Gray600}"
+                HorizontalOptions="Center"
+                CharacterSpacing="1.2"
+                Margin="0,32,0,0"/>
+
+        </Grid>
+    </ScrollView>
+</ContentPage>

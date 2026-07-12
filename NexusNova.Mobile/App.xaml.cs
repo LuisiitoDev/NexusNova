@@ -1,5 +1,3 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-
 namespace NexusNova
 {
     public partial class App : Application
@@ -7,6 +5,7 @@ namespace NexusNova
         public App()
         {
             InitializeComponent();
+            UserAppTheme = AppTheme.Dark;
         }
 
         protected override Window CreateWindow(IActivationState? activationState)
