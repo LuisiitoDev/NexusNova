@@ -1,6 +1,6 @@
-﻿using NexusNova.Core.Interfaces;
+using NexusNova.Core.Interfaces;
 
-namespace NexusNova.Core.Services;
+namespace NexusNova.Infraestructure.Services;
 
 public sealed class PromptBuilder : IPromptBuilder
 {

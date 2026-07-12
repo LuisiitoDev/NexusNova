@@ -1,27 +1,22 @@
 ﻿using Microsoft.ML.OnnxRuntimeGenAI;
+using NexusNova.Core.Interfaces;
 using System.Runtime.CompilerServices;
 
 namespace NexusNova.Infraestructure.Services;
 
-public sealed class GenAiService
+public sealed class InferenceService : IInferenceService
 {
-    private Model _model;
-    private Tokenizer _tokenizer;
-    private bool _initialized;
+    private readonly Model _model;
+    private readonly Tokenizer _tokenizer;
 
-    public async Task InitializeAsync()
+    public InferenceService(string path)
     {
-        if(_initialized) return;
-
-        _model = new Model("path/to/your/model.onnx");
+        _model = new Model(path);
         _tokenizer = new Tokenizer(_model);
-        _initialized = true;
     }
 
     public async IAsyncEnumerable<string> GenerateResponseAsync(string prompt, [EnumeratorCancellation] CancellationToken cancellationToken)
     {
-        if(!_initialized) await InitializeAsync();
-
         using var sequences = _tokenizer.Encode(prompt);
         using var generatorParams = new GeneratorParams(_model);
         generatorParams.SetSearchOption("max_length", 100);
