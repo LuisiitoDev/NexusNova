@@ -8,4 +8,11 @@
     <UserSecretsId>d485a60b-88fb-46c6-8e44-a4d9d036ff31</UserSecretsId>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\NexusNova.Api\NexusNova.Api.csproj" />
+    <ProjectReference Include="..\NexusNova.Mobile\NexusNova.csproj">
+      <SetTargetFramework>TargetFramework=net10.0</SetTargetFramework>
+    </ProjectReference>
+  </ItemGroup>
+
 </Project>
