@@ -1,8 +1,11 @@
+using NexusNova.Api.Config;
+using NexusNova.Api.Endpoints;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+// Register the manifest provider, options and related services.
+builder.Services.AddNexusNovaApi(builder.Configuration);
 
-builder.Services.AddControllers();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
 
@@ -16,8 +19,6 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-app.UseAuthorization();
-
-app.MapControllers();
+app.MapModelManifestEndpoints();
 
 app.Run();
