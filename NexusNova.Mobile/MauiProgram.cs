@@ -23,12 +23,6 @@ namespace NexusNova
                     fonts.AddFont("FluentSystemIcons-Regular.ttf", FluentUI.FontFamily);
                 });
 
-            builder.Services.AddRefitClient<INovaApiClient>()
-                .ConfigureHttpClient(client =>
-                {
-                    client.BaseAddress = new Uri("https+http:
-                });
-
             builder.Services.AddTransient<LoginPage>();
             builder.Services.AddTransient<AssistantPage>();
             builder.Services.AddTransient<AgendaPage>();

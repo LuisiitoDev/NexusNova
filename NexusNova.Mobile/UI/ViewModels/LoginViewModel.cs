@@ -19,7 +19,6 @@ public partial class LoginViewModel : ObservableObject
         {
             await Task.Delay(1500);
             IsCredentialConnected = true;
-            await NavigateToMainAppAsync();
         }
         finally
         {
@@ -35,16 +34,10 @@ public partial class LoginViewModel : ObservableObject
         {
             await Task.Delay(800);
             IsCredentialConnected = true;
-            await NavigateToMainAppAsync();
         }
         finally
         {
             IsBusy = false;
         }
-    }
-
-    private static async Task NavigateToMainAppAsync()
-    {
-        await Shell.Current.GoToAsync("
     }
 }
