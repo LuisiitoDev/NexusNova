@@ -1,14 +1,27 @@
 ﻿using NexusNova.Core.Interfaces;
-using NexusNova.Infraestructure.Http;
 
 namespace NexusNova.Infraestructure.Services;
 
-public class InferenceBootstrapService(INovaApiClient nova, IModelDownloader downloader, IModelFileSystemProvider fileSystem)
+public class InferenceBootstrapService(IModelDownloader downloader, IModelFileSystemProvider fileSystem)
 {
     public async Task EnsureModelAvailableAsync(CancellationToken cancellationToken)
     {
-        var manifest = await nova.GetManifestAsync(cancellationToken);
+        string[] files =
+        [
+          "config.json",
+          "model_q4f16.onnx",
+          "tokenizer.json",
+          "tokenizer_config.json"
+        ];
 
-        await downloader.DownloadAsync(manifest.DownloadUrl, fileSystem.GetModelPath(), cancellationToken);
+        foreach (var file in files)
+        {
+            if(File.Exists(Path.Combine(fileSystem.ModelPath, file))) continue;
+            
+            var downloadUrl = $"https://huggingface.co/buckets/LuisiitoDev/Qwen2.5-1.5B-Instruct/resolve/{file}?download=true";
+            await downloader.DownloadAsync(downloadUrl, fileSystem.ModelPath, cancellationToken);    
+        }
+
+        new InferenceService(fileSystem.ModelPath);
     }
 }

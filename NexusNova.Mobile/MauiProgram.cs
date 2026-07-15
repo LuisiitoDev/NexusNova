@@ -1,6 +1,8 @@
 using CommunityToolkit.Maui;
 using Microsoft.Extensions.Logging;
+using NexusNova.Core.Interfaces;
 using NexusNova.Infraestructure.Http;
+using NexusNova.Infraestructure.Services;
 using NexusNova.UI.Pages;
 using NexusNova.UI.ViewModels;
 using Refit;
@@ -27,7 +29,10 @@ namespace NexusNova
             builder.Services.AddTransient<AssistantPage>();
             builder.Services.AddTransient<AgendaPage>();
             builder.Services.AddSingleton<AppShell>();
-
+            
+            builder.Services.AddTransient<IModelDownloader, ModelDownloader>();
+            builder.Services.AddTransient<IModelFileSystemProvider, ModelFileSystemProvider>();
+            builder.Services.AddTransient<InferenceBootstrapService>();
             builder.Services.AddTransient<LoginViewModel>();
             builder.Services.AddTransient<AssistantViewModel>();
             builder.Services.AddTransient<AgendaViewModel>();

@@ -2,6 +2,7 @@ using System.Collections.ObjectModel;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using NexusNova.Domain.Models;
+using NexusNova.Infraestructure.Services;
 
 namespace NexusNova.UI.ViewModels;
 
@@ -16,9 +17,9 @@ public partial class AssistantViewModel : BaseViewModel
     [ObservableProperty]
     private ObservableCollection<SuggestedAction> _suggestedActions = [];
 
-    public AssistantViewModel()
+    public AssistantViewModel(InferenceBootstrapService bootstrapService)
     {
-        LoadSampleData();
+        _ = bootstrapService.EnsureModelAvailableAsync(CancellationToken.None);
     }
 
     private void LoadSampleData()

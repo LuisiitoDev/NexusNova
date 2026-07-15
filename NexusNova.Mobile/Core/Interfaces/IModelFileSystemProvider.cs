@@ -2,6 +2,5 @@
 
 public interface IModelFileSystemProvider
 {
-    string GetModelPath();
-    Task SaveModel(byte[] model);
+    string ModelPath { get; }
 }

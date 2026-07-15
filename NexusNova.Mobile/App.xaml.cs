@@ -1,5 +1,6 @@
 using NexusNova.UI.Pages;
 using Microsoft.Extensions.DependencyInjection;
+using NexusNova.UI.ViewModels;
 
 namespace NexusNova
 {
@@ -15,7 +16,7 @@ namespace NexusNova
 
         protected override Window CreateWindow(IActivationState? activationState)
         {
-            return new Window(_services.GetRequiredService<LoginPage>());
+            return new Window(_services.GetRequiredService<AssistantPage>());
         }
     }
 }
